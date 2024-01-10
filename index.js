@@ -7,8 +7,6 @@ const searchBarContainer = document.querySelector(
 );
 const searchBar = document.querySelector('[data-js="search-bar"]');
 const navigation = document.querySelector('[data-js="navigation"]');
-export const prevButton = document.querySelector('[data-js="button-prev"]');
-export const nextButton = document.querySelector('[data-js="button-next"]');
 const pagination = document.querySelector('[data-js="pagination"]');
 
 // States
