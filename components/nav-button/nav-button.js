@@ -11,6 +11,9 @@ export let page = 1;
 prevButton.addEventListener("click", () => {
   if (page >= 2) {
     page -= 1;
+    cardContainer.innerHTML = "";
+    pageDisplay();
+    fetchCharacters();
   }
 });
 
