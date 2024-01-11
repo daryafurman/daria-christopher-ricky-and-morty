@@ -1,3 +1,4 @@
+
 //import { prevButton } from "../../index.js";
 //import { nextButton } from "../../index.js";
 import { cardContainer, maxPage } from "../../index.js";
@@ -25,3 +26,4 @@ nextButton.addEventListener("click", () => {
     fetchCharacters();
   }
 });
+
