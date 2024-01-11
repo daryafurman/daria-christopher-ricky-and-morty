@@ -2,7 +2,7 @@ export function createCharacterCard(data) {
   //const cardContainer = document.querySelector('[data-js="card-container"]');
   const card = document.createElement("li");
   card.classList.add("card");
-  card.innerHTML += `
+  card.innerHTML = `
     <div class="card__image-container">
             <img
               class="card__image"
