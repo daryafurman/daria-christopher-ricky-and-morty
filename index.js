@@ -46,6 +46,5 @@ export async function fetchCharacters() {
     console.error("error");
   }
 }
-
 searchBarContainer.append(searchBar);
 fetchCharacters();

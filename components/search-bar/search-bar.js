@@ -1,7 +1,7 @@
 import { searchBar } from "../../index.js";
 
 export function createSearchBar() {
-  searchBar = createSearchBar();
+  //searchBar = createSearchBar();
   const newSearchBar = document.createElement("form");
   newSearchBar.classList.add("search-bar");
   newSearchBar.innerHTML = `
