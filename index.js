@@ -13,7 +13,7 @@ export const navigation = document.querySelector('[data-js="navigation"]');
 export let maxPage;
 export let page = 1;
 export let searchQuery = "";
-createSearchBar(onSubmit);
+
 let response;
 
 export const pagination = createPagination();
@@ -45,9 +45,11 @@ export async function fetchCharacters() {
     maxPage = data.info.pages;
     pageDisplay();
     console.log(data);
-
+    //const characterArray = data.results;
+    //characterArray.forEach((e) => {
     data.results.forEach((e) => {
       const card = createCharacterCard(data.results[data.results.indexOf(e)]);
+      //const card = createCharacterCard(...e);
       cardContainer.append(card);
     });
   } catch {
@@ -57,6 +59,7 @@ export async function fetchCharacters() {
 }
 fetchCharacters();
 
+createSearchBar(onSubmit);
 createPrevButton(onClickPrev);
 createNextButton(onClickNext);
 
@@ -81,7 +84,6 @@ function onClickNext() {
 // search Bar callback
 function onSubmit(e) {
   e.preventDefault();
-
   const formData = new FormData(e.target);
   const data = Object.fromEntries(formData);
   //console.log(data.query);

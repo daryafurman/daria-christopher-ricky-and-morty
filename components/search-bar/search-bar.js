@@ -19,7 +19,7 @@ export function createSearchBar(onSubmit) {
             placeholder="search characters"
             aria-label="character name"
           />
-          <button type="submit" class="search-bar__button" aria-label="search for character">
+          <button  class="search-bar__button" aria-label="search for character">
             <img
               class="search-bar__icon"
               src="assets/magnifying-glass.png"
