@@ -11,7 +11,7 @@
 
 :root {
   --color-primary: rgb(51, 51, 51);
-  --color-secondary: #bfd470;
+  --color-secondary: #132d44;
   --color-of-card: #70a2d4;
   --font-family: system-ui;
 }
@@ -25,6 +25,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  /* background-repeat: space;
+  background-size: cover; */
 }
 
 main {
@@ -32,6 +35,7 @@ main {
   flex-direction: column;
   gap: 10px;
   align-items: center;
+  background-image: url("/assets/space.jpg");
 }
 
 .title {
@@ -54,6 +58,6 @@ main {
 .scrollButton {
   height: 50px;
   cursor: pointer;
-  background: transparent;
+  background: #70a2d4;
   border-radius: 50%;
 }

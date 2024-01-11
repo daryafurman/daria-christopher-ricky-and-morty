@@ -45,7 +45,8 @@ export async function fetchCharacters() {
     });
   } catch {
     const notFound = document.createElement("article");
-    notFound.innerHTML = `Sorry no hits, shoot again or go back to <a href="./index.html">start</a>!`;
+    notFound.innerHTML = `<h4 style="text-align:center">Sorry no hits, shoot again or go back to <a href="./index.html">start</a>!</h4><br>
+    <img src="./assets/rick-ar.png" alt="error ricky pic">`;
     cardContainer.append(notFound);
     page = 0;
     maxPage = 0;
@@ -54,7 +55,6 @@ export async function fetchCharacters() {
   } finally {
   }
 }
-
 
 const newSearchBar = createSearchBar(onSubmit);
 searchBarContainer.append(newSearchBar);
