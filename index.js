@@ -2,6 +2,7 @@ import { createCharacterCard } from "./components/card/card.js";
 import { createPrevButton } from "./components/nav-button/createButton.js";
 import { createNextButton } from "./components/nav-button/createButton.js";
 import { pageDisplay } from "./components/nav-pagination/nav-pagination.js";
+
 import { createPagination } from "./components/nav-pagination/nav-pagination.js";
 import { createSearchBar } from "./components/search-bar/search-bar.js";
 
@@ -26,7 +27,33 @@ export async function fetchCharacters() {
       const notFound = document.createElement("article");
       notFound.innerHTML = `Sorry no hits, shoot again or go back to <a href="./index.html">start</a>!`;
       cardContainer.append(notFound);
+      console.error("failed to fetch data from API")
       throw new Error("Network Problem");
+
+
+export const cardContainer = document.querySelector(
+  '[data-js="card-container"]'
+);
+export const searchBarContainer = document.querySelector(
+  '[data-js="search-bar-container"]'
+);
+export const searchBar = document.querySelector('[data-js="search-bar"]');
+const navigation = document.querySelector('[data-js="navigation"]');
+export const pagination = document.querySelector('[data-js="pagination"]');
+
+// States
+
+/*
+searchBar.addEventListener("submit", (onSubmit) => {
+  onSubmit.preventDefault();
+  searchQuery = onSubmit.target.elements.query.value;
+  cardContainer.innerHTML = "";
+  console.log("hello character");
+  fetchCharacters();
+});
+*/
+
+
     }
     const data = await response.json();
     maxPage = data.info.pages;
@@ -36,11 +63,15 @@ export async function fetchCharacters() {
       const card = createCharacterCard(data.results[data.results.indexOf(e)]);
       cardContainer.append(card);
     });
+
   } catch {
     console.log("Error caught!");
   } finally {
+
   }
 }
+
+searchBarContainer.append(searchBar);
 fetchCharacters();
 
 createSearchBar(onSubmit);
