@@ -14,6 +14,17 @@ export let maxPage;
 export let page = 1;
 export let searchQuery = "";
 
+/*export const cardContainer = document.querySelector(
+  '[data-js="card-container"]'
+);*/
+export const searchBarContainer = document.querySelector(
+  '[data-js="search-bar-container"]'
+);
+
+export const searchBar = document.querySelector('[data-js="search-bar"]');
+// const navigation = document.querySelector('[data-js="navigation"]');
+// export const pagination = document.querySelector('[data-js="pagination"]');
+
 let response;
 
 export const pagination = createPagination();
@@ -26,23 +37,12 @@ export async function fetchCharacters() {
       const notFound = document.createElement("article");
       notFound.innerHTML = `Sorry no hits, shoot again or go back to <a href="./index.html">start</a>!`;
       cardContainer.append(notFound);
-      console.error("failed to fetch data from API")
+      console.error("failed to fetch data from API");
       throw new Error("Network Problem");
 
+      // States
 
-export const cardContainer = document.querySelector(
-  '[data-js="card-container"]'
-);
-export const searchBarContainer = document.querySelector(
-  '[data-js="search-bar-container"]'
-);
-export const searchBar = document.querySelector('[data-js="search-bar"]');
-const navigation = document.querySelector('[data-js="navigation"]');
-export const pagination = document.querySelector('[data-js="pagination"]');
-
-// States
-
-/*
+      /*
 searchBar.addEventListener("submit", (onSubmit) => {
   onSubmit.preventDefault();
   searchQuery = onSubmit.target.elements.query.value;
@@ -51,9 +51,8 @@ searchBar.addEventListener("submit", (onSubmit) => {
   fetchCharacters();
 });
 */
-
-
     }
+
     const data = await response.json();
     maxPage = data.info.pages;
     pageDisplay();
@@ -62,17 +61,15 @@ searchBar.addEventListener("submit", (onSubmit) => {
       const card = createCharacterCard(data.results[data.results.indexOf(e)]);
       cardContainer.append(card);
     });
-
   } catch {
     console.log("Error caught!");
   } finally {
-
   }
 }
 
-searchBarContainer.append(searchBar);
 fetchCharacters();
-createSearchBar(onSubmit);
+const newSearchBar = createSearchBar(onSubmit);
+searchBarContainer.append(newSearchBar);
 //createPrevButton(onClickPrev);
 createNextButton(onClickNext);
 const prevButton = createPrevButton(onClickPrev);

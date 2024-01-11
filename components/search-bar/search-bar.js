@@ -1,10 +1,11 @@
 import { searchBar } from "../../index.js";
 
-export function createSearchBar() {
+export function createSearchBar(onSubmit) {
+  //const searchBar = createSearchBar();
   const newSearchBar = document.createElement("form");
   newSearchBar.classList.add("search-bar");
-  searchBar.setAttribute("data-js", "search-bar");
-  searchBar.setAttribute("action", "");
+  newSearchBar.setAttribute("data-js", "search-bar");
+  newSearchBar.setAttribute("action", "");
   newSearchBar.innerHTML = `
     <input
     name="query"
@@ -21,7 +22,6 @@ export function createSearchBar() {
     />
   </button>
     `;
-searchBar.addEventListener("submit", onSubmit);
+  newSearchBar.addEventListener("submit", onSubmit);
   return newSearchBar;
-
 }
