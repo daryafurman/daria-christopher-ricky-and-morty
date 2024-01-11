@@ -42,6 +42,9 @@ export async function fetchCharacters() {
       throw new Error("Data Problem");
     }
     maxPage = data.info.pages;
+    if (data.info.prev === null) {
+      page = 1;
+    }
     pageDisplay();
     console.log(data);
     data.results.forEach((e) => {
