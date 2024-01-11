@@ -7,7 +7,7 @@
   background-color: var(--color-secondary);
   display: grid;
   grid-template-columns: 1fr 24px;
-  background-color: #c0cb98;
+  background-color: #7093d4;
 }
 
 .search-bar__input {
