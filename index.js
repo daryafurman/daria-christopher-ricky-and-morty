@@ -45,11 +45,8 @@ export async function fetchCharacters() {
     maxPage = data.info.pages;
     pageDisplay();
     console.log(data);
-    //const characterArray = data.results;
-    //characterArray.forEach((e) => {
     data.results.forEach((e) => {
       const card = createCharacterCard(data.results[data.results.indexOf(e)]);
-      //const card = createCharacterCard(...e);
       cardContainer.append(card);
     });
   } catch {
@@ -64,6 +61,7 @@ createPrevButton(onClickPrev);
 createNextButton(onClickNext);
 
 //callback functions for eventListener in Button create
+
 function onClickPrev() {
   if (page >= 2) {
     page -= 1;
@@ -82,6 +80,7 @@ function onClickNext() {
   }
 }
 // search Bar callback
+
 function onSubmit(e) {
   e.preventDefault();
   const formData = new FormData(e.target);
