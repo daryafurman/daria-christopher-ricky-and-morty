@@ -45,7 +45,7 @@ export async function fetchCharacters() {
     });
   } catch {
     const notFound = document.createElement("article");
-    notFound.innerHTML = `Sorry no hits, shoot again or go back to <a href="./index.html">start</a>!`;
+    notFound.innerHTML = `Sorry, no hits! Shoot again or go back to <a href="./index.html">start</a>.`;
     cardContainer.append(notFound);
     page = 0;
     maxPage = 0;

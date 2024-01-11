@@ -1,10 +1,14 @@
 .card-container {
   margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .card {
   width: 300px;
   margin: 20px;
   background-color: var(--color-of-card);
+  border-radius: 52px;
 }
 
 .card__info {
