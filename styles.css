@@ -11,13 +11,15 @@
 
 :root {
   --color-primary: rgb(51, 51, 51);
-  --color-secondary: #f6f6f6;
+  --color-secondary: #bfd470;
+  --color-of-card: #70a2d4;
   --font-family: system-ui;
 }
 
 body {
   font-family: var(--font-family);
   color: var(--color-primary);
+  background-color: var(--color-secondary);
   padding: 20px;
 }
 
@@ -25,8 +27,15 @@ main {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  align-items: center;
 }
 
 .title {
   padding: 10px 0;
+  width: 384px;
+  height: 216px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
