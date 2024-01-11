@@ -3,7 +3,8 @@
 }
 .card {
   width: 300px;
-  background-color: var(--color-secondary);
+  margin: 20px;
+  background-color: var(--color-of-card);
 }
 
 .card__info {

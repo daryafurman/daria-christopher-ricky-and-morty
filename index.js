@@ -22,24 +22,11 @@ export async function fetchCharacters() {
   try {
     let URL = `https://rickandmortyapi.com/api/character/?page=${page}&name=${searchQuery}`;
     response = await fetch(URL);
-    console.log(response.status);
     if (!response.ok) {
-      // throw new Error(`${response.status} ${response.statusText}`);
-
       const notFound = document.createElement("article");
       notFound.innerHTML = `Sorry no hits, shoot again or go back to <a href="./index.html">start</a>!`;
       cardContainer.append(notFound);
-      searchQuery = "";
-      response = await fetch(URL);
-      const data = await response.json();
-      maxPage = data.info.pages;
-      pageDisplay();
-      console.log(data);
-
-      data.results.forEach((e) => {
-        const card = createCharacterCard(data.results[data.results.indexOf(e)]);
-        cardContainer.append(card);
-      });
+      throw new Error("Network Problem");
     }
     const data = await response.json();
     maxPage = data.info.pages;
@@ -57,8 +44,9 @@ export async function fetchCharacters() {
 fetchCharacters();
 
 createSearchBar(onSubmit);
-createPrevButton(onClickPrev);
+//createPrevButton(onClickPrev);
 createNextButton(onClickNext);
+const prevButton = createPrevButton(onClickPrev);
 
 //callback functions for eventListener in Button create
 
