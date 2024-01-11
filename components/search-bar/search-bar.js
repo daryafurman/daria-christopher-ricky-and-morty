@@ -1,7 +1,9 @@
 import { searchBar } from "../../index.js";
 
+
 export function createSearchBar(onSubmit) {
   //const searchBar = createSearchBar();
+
   const newSearchBar = document.createElement("form");
   newSearchBar.classList.add("search-bar");
   newSearchBar.setAttribute("data-js", "search-bar");

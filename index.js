@@ -55,6 +55,7 @@ export async function fetchCharacters() {
   }
 }
 
+
 const newSearchBar = createSearchBar(onSubmit);
 searchBarContainer.append(newSearchBar);
 
