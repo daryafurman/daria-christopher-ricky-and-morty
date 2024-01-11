@@ -6,7 +6,6 @@ import { createPagination } from "./components/nav-pagination/nav-pagination.js"
 import { createSearchBar } from "./components/search-bar/search-bar.js";
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
-
 export const navigation = document.querySelector('[data-js="navigation"]');
 
 // States
@@ -42,7 +41,6 @@ export async function fetchCharacters() {
   }
 }
 fetchCharacters();
-
 createSearchBar(onSubmit);
 //createPrevButton(onClickPrev);
 createNextButton(onClickNext);
