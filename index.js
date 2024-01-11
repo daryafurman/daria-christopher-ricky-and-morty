@@ -34,14 +34,13 @@ export async function fetchCharacters() {
     let URL = `https://rickandmortyapi.com/api/character/?page=${page}&name=${searchQuery}`;
     response = await fetch(URL);
     if (!response.ok) {
-      const notFound = document.createElement("article");
-      notFound.innerHTML = `Sorry no hits, shoot again or go back to <a href="./index.html">start</a>!`;
-      cardContainer.append(notFound);
-      console.error("failed to fetch data from API");
       throw new Error("Network Problem");
     }
-
     const data = await response.json();
+    console.log("neu", data);
+    if (!data) {
+      throw new Error("Data Problem");
+    }
     maxPage = data.info.pages;
     pageDisplay();
     console.log(data);
@@ -50,6 +49,12 @@ export async function fetchCharacters() {
       cardContainer.append(card);
     });
   } catch {
+    const notFound = document.createElement("article");
+    notFound.innerHTML = `Sorry no hits, shoot again or go back to <a href="./index.html">start</a>!`;
+    cardContainer.append(notFound);
+    page = 0;
+    maxPage = 0;
+    pageDisplay();
     console.log("Error caught!");
   } finally {
   }
