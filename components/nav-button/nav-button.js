@@ -1,6 +1,6 @@
-
 //import { prevButton } from "../../index.js";
 //import { nextButton } from "../../index.js";
+/*
 import { cardContainer, maxPage } from "../../index.js";
 import { fetchCharacters } from "../../index.js";
 import { pageDisplay } from "../nav-pagination/nav-pagination.js";
@@ -27,3 +27,4 @@ nextButton.addEventListener("click", () => {
   }
 });
 
+*/

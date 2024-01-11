@@ -39,18 +39,6 @@ export async function fetchCharacters() {
       cardContainer.append(notFound);
       console.error("failed to fetch data from API");
       throw new Error("Network Problem");
-
-      // States
-
-      /*
-searchBar.addEventListener("submit", (onSubmit) => {
-  onSubmit.preventDefault();
-  searchQuery = onSubmit.target.elements.query.value;
-  cardContainer.innerHTML = "";
-  console.log("hello character");
-  fetchCharacters();
-});
-*/
     }
 
     const data = await response.json();
@@ -104,3 +92,15 @@ function onSubmit(e) {
   cardContainer.innerHTML = "";
   fetchCharacters();
 }
+
+// States
+
+/*
+searchBar.addEventListener("submit", (onSubmit) => {
+  onSubmit.preventDefault();
+  searchQuery = onSubmit.target.elements.query.value;
+  cardContainer.innerHTML = "";
+  console.log("hello character");
+  fetchCharacters();
+});
+*/
