@@ -3,9 +3,11 @@
   display: grid;
   grid-template-columns: 100px 100px 100px;
   justify-content: center;
+  margin-top: 20px;
 }
 
 .navigation__pagination {
   display: grid;
   place-items: center;
+  color: var(--color-of-card);
 }

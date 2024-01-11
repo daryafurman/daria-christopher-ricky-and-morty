@@ -3,11 +3,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  border: 12px;
 }
 .card {
   width: 300px;
   margin: 20px;
   background-color: var(--color-of-card);
+  border-radius: 40px;
 }
 
 .card__info {
