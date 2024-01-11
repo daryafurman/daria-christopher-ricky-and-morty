@@ -3,32 +3,40 @@ import { createPrevButton } from "./components/nav-button/createButton.js";
 import { createNextButton } from "./components/nav-button/createButton.js";
 import { pageDisplay } from "./components/nav-pagination/nav-pagination.js";
 import { createPagination } from "./components/nav-pagination/nav-pagination.js";
+import { createSearchBar } from "./components/search-bar/search-bar.js";
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
-const searchBarContainer = document.querySelector(
-  '[data-js="search-bar-container"]'
-);
-const searchBar = document.querySelector('[data-js="search-bar"]');
+
 export const navigation = document.querySelector('[data-js="navigation"]');
 
 // States
 export let maxPage;
 export let page = 1;
-const searchQuery = "";
+export let searchQuery = "";
+createSearchBar(onSubmit);
 
 export const pagination = createPagination();
 
 export async function fetchCharacters() {
-  const URL = `https://rickandmortyapi.com/api/character/?page=${page}`;
-  const response = await fetch(URL);
-  const data = await response.json();
-  maxPage = data.info.pages;
-  pageDisplay();
-  console.log(data);
-  data.results.forEach((e) => {
-    const card = createCharacterCard(data.results[data.results.indexOf(e)]);
-    cardContainer.append(card);
-  });
+  try {
+    const URL = `https://rickandmortyapi.com/api/character/?page=${page}&name=${searchQuery}`;
+    const response = await fetch(URL);
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`);
+    }
+    const data = await response.json();
+    maxPage = data.info.pages;
+    pageDisplay();
+    console.log(data);
+
+    data.results.forEach((e) => {
+      const card = createCharacterCard(data.results[data.results.indexOf(e)]);
+      cardContainer.append(card);
+    });
+  } catch {
+    console.log("Error caught!");
+  } finally {
+  }
 }
 fetchCharacters();
 
@@ -36,20 +44,30 @@ createPrevButton(onClickPrev);
 createNextButton(onClickNext);
 
 //callback functions for eventListener in Button create
-export function onClickPrev() {
-  cardContainer.innerHTML = "";
+function onClickPrev() {
   if (page >= 2) {
     page -= 1;
+    cardContainer.innerHTML = "";
+    pageDisplay();
+    fetchCharacters();
   }
-  pageDisplay();
-  fetchCharacters();
 }
 
-export function onClickNext() {
-  cardContainer.innerHTML = "";
-  if (page < 42) {
+function onClickNext() {
+  if (page < maxPage) {
     page += 1;
+    cardContainer.innerHTML = "";
+    pageDisplay();
+    fetchCharacters();
   }
-  pageDisplay();
+}
+// search Bar callback
+function onSubmit(e) {
+  e.preventDefault();
+  cardContainer.innerHTML = "";
+  const formData = new FormData(e.target);
+  const data = Object.fromEntries(formData);
+  console.log(data.query);
+  searchQuery = data.query;
   fetchCharacters();
 }
