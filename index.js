@@ -47,6 +47,7 @@ export async function fetchCharacters() {
     const notFound = document.createElement("article");
     notFound.innerHTML = `Sorry, no hits! Shoot again or go back to <a href="./index.html">start</a>.`;
     cardContainer.append(notFound);
+
     page = 0;
     maxPage = 0;
     pageDisplay();
@@ -103,3 +104,38 @@ searchBar.addEventListener("submit", (onSubmit) => {
   fetchCharacters();
 });
 */
+
+/*
+let pageCounter = maxPage
+const arr = []
+while(maxPage){
+  const res = await fetch(URL)
+  const dataAll = await res.json()
+  arr.push(dataAll.results)
+  page++
+  maxPage--
+}
+console.log(arr)
+
+
+
+
+*/
+console.log(maxPage);
+const arr = [];
+async function fetchAll() {
+  let pageCounter = 42;
+  while (pageCounter) {
+    const res = await fetch(
+      `https://rickandmortyapi.com/api/character/?page=${page}`
+    );
+    const dataAll = await res.json();
+
+    arr.push(dataAll.results);
+    page++;
+    pageCounter--;
+  }
+  page = 1;
+  console.log(arr.flat());
+}
+fetchAll();
