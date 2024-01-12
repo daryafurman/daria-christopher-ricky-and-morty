@@ -45,7 +45,7 @@ export async function fetchCharacters() {
     });
   } catch {
     const notFound = document.createElement("article");
-    notFound.innerHTML = `<h4 style="text-align:center; background-color: var(--color-of-card);">Sorry no hits, shoot again or go back to <a href="./index.html">start</a>!</h4><br>
+    notFound.innerHTML = `<h4 style="text-align:center; background-color: var(--color-of-card);">Sorry, no hits, shoot again or go back to <a href="./index.html">start</a>!</h4><br>
     <img src="./assets/rick-ar.png" alt="error ricky pic">`;
     cardContainer.append(notFound);
     page = 0;

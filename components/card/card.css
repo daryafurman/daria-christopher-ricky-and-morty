@@ -12,6 +12,11 @@
   border-radius: 40px;
 }
 
+.card__image {
+  border-radius: 40px;
+  background-color: black;
+}
+
 .card__info {
   display: grid;
   grid-template-columns: auto 1fr;
