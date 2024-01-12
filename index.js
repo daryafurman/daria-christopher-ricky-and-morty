@@ -86,6 +86,7 @@ function onClickNext() {
 
 function onSubmit(e) {
   e.preventDefault();
+  page = 1;
   const formData = new FormData(e.target);
   const data = Object.fromEntries(formData);
   searchQuery = data.query;
