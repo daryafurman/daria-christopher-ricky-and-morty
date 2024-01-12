@@ -45,7 +45,8 @@ export async function fetchCharacters() {
     });
   } catch {
     const notFound = document.createElement("article");
-    notFound.innerHTML = `Sorry, no hits! Shoot again or go back to <a href="./index.html">start</a>.`;
+    notFound.innerHTML = `<h4 style="text-align:center; background-color: var(--color-of-card);">Sorry, no hits, shoot again or go back to <a href="./index.html">start</a>!</h4><br>
+    <img src="./assets/rick-ar.png" alt="error ricky pic">`;
     cardContainer.append(notFound);
 
     page = 0;
@@ -89,6 +90,7 @@ function onSubmit(e) {
   page = 1;
   const formData = new FormData(e.target);
   const data = Object.fromEntries(formData);
+  page = 1;
   searchQuery = data.query;
   cardContainer.innerHTML = "";
   fetchCharacters();
