@@ -1,25 +1,23 @@
+import app from "./components/utils/app.js";
 import { createCharacterCard } from "./components/card/card.js";
-import { createPrevButton } from "./components/nav-button/createButton.js";
-import { createNextButton } from "./components/nav-button/createButton.js";
 import { pageDisplay } from "./components/nav-pagination/nav-pagination.js";
 import { createPagination } from "./components/nav-pagination/nav-pagination.js";
-import { createSearchBar } from "./components/search-bar/search-bar.js";
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 export const navigation = document.querySelector('[data-js="navigation"]');
-export const searchBar = document.querySelector('[data-js="search-bar"]');
-const searchBarContainer = document.querySelector(
+export const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
 );
 
 // States
-export let maxPage;
-export let page = 1;
-export let searchQuery = "";
+
+let maxPage;
+let page = 1;
+let searchQuery = "";
 let response;
+const arr = [];
 
-export const pagination = createPagination();
-
+//////////////////////////////////////////////start async/////////////////////////////////////
 export async function fetchCharacters() {
   try {
     let URL = `https://rickandmortyapi.com/api/character/?page=${page}&name=${searchQuery}`;
@@ -32,11 +30,13 @@ export async function fetchCharacters() {
     if (!data) {
       throw new Error("Data Problem");
     }
+
     maxPage = data.info.pages;
     if (data.info.prev === null) {
       page = 1;
     }
-    pageDisplay();
+
+    pageDisplay(page, maxPage);
 
     data.results.forEach((e) => {
       //const card = createCharacterCard(data.results[data.results.indexOf(e)]);
@@ -51,54 +51,49 @@ export async function fetchCharacters() {
 
     page = 0;
     maxPage = 0;
-    pageDisplay();
+    //pageDisplay();
     console.log("Error caught!");
   } finally {
   }
 }
+/////////////////function calls and render----------------------------------------------------------
+export const pagination = createPagination();
+app();
 
-const newSearchBar = createSearchBar(onSubmit);
-searchBarContainer.append(newSearchBar);
+//callback functions for eventListener in Button create ---------------------------------------------
 
-fetchCharacters();
-createPrevButton(onClickPrev);
-createNextButton(onClickNext);
-
-//callback functions for eventListener in Button create
-
-function onClickPrev() {
+export function onClickPrev() {
   if (page >= 2) {
     page -= 1;
     cardContainer.innerHTML = "";
-    pageDisplay();
     fetchCharacters();
   }
 }
 
-function onClickNext() {
+export function onClickNext() {
   if (page < maxPage) {
     page += 1;
     cardContainer.innerHTML = "";
-    pageDisplay();
     fetchCharacters();
   }
 }
+
 // search Bar callback
 
-function onSubmit(e) {
+export function onSubmit(e) {
   e.preventDefault();
   page = 1;
   const formData = new FormData(e.target);
   const data = Object.fromEntries(formData);
-  page = 1;
   searchQuery = data.query;
   cardContainer.innerHTML = "";
   fetchCharacters();
 }
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+/* Darias initial Searchbar
 
-// Darias initial Searchbar
 
-/*
 searchBar.addEventListener("submit", (onSubmit) => {
   onSubmit.preventDefault();
   searchQuery = onSubmit.target.elements.query.value;
@@ -106,39 +101,21 @@ searchBar.addEventListener("submit", (onSubmit) => {
   console.log("hello character");
   fetchCharacters();
 });
+
+_________________________________________________________________________________________________
+// async function fetchAll(maxPage) {
+//   while (maxPage) {
+//     page = 1;
+//     const res = await fetch(
+//       `https://rickandmortyapi.com/api/character/?page=${page}`
+//     );
+//     const dataAll = await res.json();
+//     arr.push(dataAll.results).flat();
+//     page++;
+//     maxPage--;
+//   }
+
+//   console.log(arr);
+// }
+// fetchAll();
 */
-
-/*
-let pageCounter = maxPage
-const arr = []
-while(maxPage){
-  const res = await fetch(URL)
-  const dataAll = await res.json()
-  arr.push(dataAll.results)
-  page++
-  maxPage--
-}
-console.log(arr)
-
-
-
-
-*/
-console.log(maxPage);
-const arr = [];
-async function fetchAll() {
-  let pageCounter = 42;
-  while (pageCounter) {
-    const res = await fetch(
-      `https://rickandmortyapi.com/api/character/?page=${page}`
-    );
-    const dataAll = await res.json();
-
-    arr.push(dataAll.results);
-    page++;
-    pageCounter--;
-  }
-  page = 1;
-  console.log(arr.flat());
-}
-fetchAll();

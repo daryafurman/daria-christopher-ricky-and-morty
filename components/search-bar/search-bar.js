@@ -1,6 +1,3 @@
-import { searchBar } from "../../index.js";
-
-
 export function createSearchBar(onSubmit) {
   //const searchBar = createSearchBar();
 
